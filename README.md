@@ -26,6 +26,9 @@ This will output an easy-to-read screen.
 ![スクリーンショット (301)](https://user-images.githubusercontent.com/94665341/142876278-2205d88c-6423-4f74-97ca-b2bcfac912bf.png)
 
 
+# Author
+heabi(my twitter account: https://mobile.twitter.com/heabictf)
+
 # Other
 If you want to change the look and feel, please tweak the source code yourself. (Please send me a pull request if you like.)
 Also, pointing out vulnerable areas and suggestions for fixes are welcome!
