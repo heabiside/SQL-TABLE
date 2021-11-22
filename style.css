@@ -1,0 +1,15 @@
+@charset "UTF-8";
+p{
+    width: 600px;
+    padding-left:1em;
+    text-indext:-1em;
+}
+.bea{
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    margin: 0.5em 0;
+    height: 10em;
+}
