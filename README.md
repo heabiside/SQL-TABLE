@@ -12,17 +12,18 @@ If you put the whole folder directly under htdocs, it works just like the pictur
 This is the first screen, where you can enter a database name to specify the database. Databases that do not exist will be created automatically.
 Database update operations can be performed from a large text field. (A duplicate statement can be executed.)
 SELECT statements are performed in the following screen. (Enter the number of SELECT statements you want to execute, and click "Go".)
-https://user-images.githubusercontent.com/94665341/142873420-bc0145ca-0042-49c5-926f-91e1d9e850cc.png
+
+![スクリーンショット (300)](https://user-images.githubusercontent.com/94665341/142876269-bc594e13-f79f-42e0-b6b8-51def18ffa78.png)
 
 
 
 This is the screen for entering a SELECT statement. You cannot execute a compound statement. (It will throw an error.)
-https://user-images.githubusercontent.com/94665341/142873424-1079a86b-4580-4392-b400-7dc6f55c5421.png
 
-
+![スクリーンショット (302)](https://user-images.githubusercontent.com/94665341/142876276-0811d243-038e-4863-b5f0-118b253e1999.png)
 
 This will output an easy-to-read screen.
-https://user-images.githubusercontent.com/94665341/142873427-f6ff4e14-868b-485e-9610-53be49f16f10.png
+
+![スクリーンショット (301)](https://user-images.githubusercontent.com/94665341/142876278-2205d88c-6423-4f74-97ca-b2bcfac912bf.png)
 
 
 # Other
