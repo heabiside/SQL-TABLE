@@ -6,7 +6,7 @@ I made it because it was annoying to have to export each query in phpmyadmin.
 XAMPP (MariaDB + APACHE)
 
 # Example usage
-I built it in xampp, which is vulnerable because I don't intend to publish it as a web app.
+I built it in xampp. This source code is vulnerable because I don't intend to publish it as a web app.
 If you put the whole folder directly under htdocs, it works just like the pictures below.
 
 This is the first screen, where you can enter a database name to specify the database. Databases that do not exist will be created automatically.
