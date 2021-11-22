@@ -6,10 +6,13 @@
         PDO::ATTR_EMULATE_PREPARES=>false
     );
 
+    $name=htmlspecialchars($_POST['name'],ENT_COMPAT,'UTF-8');
+
     $count=$_POST['count'];
     $dbname=$_POST['dbname'];
     $db=new PDO("mysql:host=127.0.0.1;dbname=$dbname","root","",$opt);
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
 ?>
 <html>
     <head>
@@ -18,7 +21,7 @@
     </head>
 
     <body>
-        <h2>name</h2>
+        <h2><?php echo $name;?></h2>
         <h2>使用したDB: MySQL(と互換性のあるMariaDB)</h2>
         <?php
 
@@ -40,7 +43,7 @@
             <!--実行したSQL文を表示-->
             <h2><strong>問題(<?php echo $i+1;?>)</strong></h2>
             <p>SQL文:<br>
-            <?php echo htmlspecialchars(nl2br($query), ENT_COMPAT, 'UTF-8');?>
+            <?php echo nl2br(htmlspecialchars($query,ENT_COMPAT,'UTF-8'));?>
             </p>
 
             <p>出力結果:<br>

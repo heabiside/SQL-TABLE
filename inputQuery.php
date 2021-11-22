@@ -29,6 +29,7 @@
     </head>
     <body>
         <form method="POST" action="solve.php">
+            <input type="text" name="name" placeholder="あなたの名前を入力">
             <?php
             for($i=0;$i<$count;$i++){
             ?>
