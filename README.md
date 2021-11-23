@@ -5,7 +5,7 @@ I made it because it was annoying to have to export each query in phpmyadmin.
 # Requirement
 MariaDB
 
-APACHE
+Apache
 
 # Example usage
 I built it in xampp. This source code is vulnerable because I don't intend to publish it as a web app.(I've taken some simple measures to prevent XSS.)

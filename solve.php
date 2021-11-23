@@ -30,7 +30,7 @@
     $db=new PDO("mysql:host=127.0.0.1;dbname=$dbname","root","",$opt);
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    $explodedQueries=explode(";",$_POST['queries']);
+    $explodedQueries=explode(";",preg_replace("/--[^\n]{0,}\n/","",$_POST['queries']));
 
 ?>
 <html>
@@ -48,7 +48,7 @@
 
         // Execute and display each SELECT statement
         for($i=0;$i<count($explodedQueries);$i++){
-            $query=trim(preg_replace("/--[^\n]{0,}\n/","",$explodedQueries[$i]));
+            $query=trim($explodedQueries[$i]);
             
 
             try{
