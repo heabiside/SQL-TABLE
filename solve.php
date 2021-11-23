@@ -6,12 +6,31 @@
         PDO::ATTR_EMULATE_PREPARES=>false
     );
 
-    $name=htmlspecialchars($_POST['name'],ENT_COMPAT,'UTF-8');
-
-    $count=$_POST['count'];
+    $name='Enter your name.';
+    if(!empty($_POST['name'])) $name=htmlspecialchars($_POST['name']);
     $dbname=$_POST['dbname'];
+
+    if(!empty($dbname)){
+        try{
+            $opt=array(
+                PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+                PDO::MYSQL_ATTR_MULTI_STATEMENTS=>false,
+                PDO::ATTR_EMULATE_PREPARES=>false
+            );
+            $db=new PDO("mysql:host=127.0.0.1","root","",$opt);
+            $db->exec("CREATE DATABASE IF NOT EXISTS ".$dbname);
+            $db=null;
+        } catch(PDOException $e){
+            die("Invalid input");
+        }
+    }else{
+        die('Specify the database in which you want to execute the SELECT statement, and also enter the number of SELECT statements you want to execute.');
+    }
+
     $db=new PDO("mysql:host=127.0.0.1;dbname=$dbname","root","",$opt);
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+    $explodedQueries=explode(";",$_POST['queries']);
 
 ?>
 <html>
@@ -22,31 +41,35 @@
 
     <body>
         <h2><?php echo $name;?></h2>
-        <h2>使用したDB: MySQL(と互換性のあるMariaDB)</h2>
+        <h2>Powered by MariaDB (compatible with MySQL)</h2>
         <?php
 
-        // 各SELECT文を実行して表示
-        for($i=0;$i<$count;$i++){
-            $query=$_POST["query".$i];
+        $selectQueryCounter=0;
 
-            // SELECT文かどうかを確認
-            $check_string=preg_replace("/( |\n)/","",$query);
+        // Execute and display each SELECT statement
+        for($i=0;$i<count($explodedQueries);$i++){
+            $query=preg_replace("/(^(\n|\r| ){0,}|--[^\n]{0,}\n)/","",$explodedQueries[$i]);
 
+            
+            
+            // Execute everything but the select statement here.
             if(strcasecmp(substr($query,0,6),"SELECT")!==0){
-                die("ここではSELECT文しか実行できません。");
+                if(!empty($query)) $db->exec($query);
+                continue;
             }
-
             try{
+
                 $ps=$db->query($query);
+                $selectQueryCounter++;
         ?>
             
-            <!--実行したSQL文を表示-->
-            <h2><strong>問題(<?php echo $i+1;?>)</strong></h2>
-            <p>SQL文:<br>
+            <!--Display the executed SQL statement.-->
+            <h2><strong>Problem(<?php echo $selectQueryCounter;?>)</strong></h2>
+            <p>SQL statement:<br>
             <?php echo nl2br(htmlspecialchars($query,ENT_COMPAT,'UTF-8'));?>
             </p>
 
-            <p>出力結果:<br>
+            <p>Table:<br>
             <table border=1>
             
                 <?php
@@ -57,7 +80,7 @@
                             echo "<tr>\n";
                             foreach($row as $key=>$val){
                                 if(is_numeric($key)) continue;
-                                echo "<td>".$key."</td>\n";
+                                echo "<td>".htmlspecialchars($key,ENT_COMPAT,'UTF-8')."</td>\n";
                             }
                             echo "</tr>\n";
                             $first_col_out=true;
@@ -65,13 +88,13 @@
                         echo "<tr>\n";
                         foreach($row as $key=>$val){
                             if(is_numeric($key)) continue;
-                            echo "<td>".$val."</td>\n";
+                            echo "<td>".htmlspecialchars($val,ENT_COMPAT,'UTF-8')."</td>\n";
                         }
                         echo "</tr>\n";
                     }
                         
                 } catch(PDOException $e){
-                    die("エラーです。");
+                    die("Error");
                 }
                 ?>
             </table>
