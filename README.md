@@ -4,10 +4,12 @@ I made it because it was annoying to have to export each query in phpmyadmin.
 
 # Requirement
 MariaDB
+
 APACHE
 
 # Example usage
-I built it in xampp. This source code is vulnerable because I don't intend to publish it as a web app.
+I built it in xampp. This source code is vulnerable because I don't intend to publish it as a web app.(I've taken some simple measures to prevent XSS.)
+
 If you put the whole folder directly under htdocs, it works just like the pictures below.
 
 
@@ -18,7 +20,7 @@ You can execute any query such as CREATE TABLE, INSERT, UPDATE, DELETE, SELECT, 
 
 ![スクリーンショット (305)](https://user-images.githubusercontent.com/94665341/142980954-69eb4490-80ed-4fa5-b6eb-dd5bde2b837b.png)
 
-The result of the SELECT statement will be output in an easy-to-read format as shown in the following picture.
+The result of the SELECT statement will be output in an easy-to-read format as shown above.
 
 
 
