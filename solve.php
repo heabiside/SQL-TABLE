@@ -7,7 +7,7 @@
     );
 
     $name='Enter your name.';
-    if(!empty($_POST['name'])) $name=htmlspecialchars($_POST['name']);
+    if(!empty($_POST['name'])) $name=htmlspecialchars($_POST['name'],ENT_COMPAT,'UTF-8');
     $dbname=$_POST['dbname'];
 
     if(!empty($dbname)){
@@ -48,8 +48,9 @@
 
         // Execute and display each SELECT statement
         for($i=0;$i<count($explodedQueries);$i++){
-            $query=preg_replace("/(^(\n|\r| ){0,}|--[^\n]{0,}\n)/","",$explodedQueries[$i]);
+            $query=trim(preg_replace("/--[^\n]{0,}\n/","",$explodedQueries[$i]));
             
+
             try{
                 // Execute everything but the select statement here.
                 if(strcasecmp(substr($query,0,6),"SELECT")!==0){
@@ -63,11 +64,10 @@
             
             <!--Display the executed SQL statement.-->
             <h2><strong>Problem(<?php echo $selectQueryCounter;?>)</strong></h2>
-            SQL statement:<br><p class="prewrap">
+            SQL statement:<br>
             <?php
-                echo $query;//htmlspecialchars($query,ENT_COMPAT,'UTF-8');
+                echo "<p class='prewrap'>".$query."</p>";
             ?>
-            </p>
 
             Table:<br><p>
             <table border=1>

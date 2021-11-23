@@ -1,7 +1,10 @@
 @charset "UTF-8";
 .prewrap{
-    white-space: pre;
-    padding-left: 1em;
+    width: 60%;
+    white-space: pre-wrap;
+    font-family:monospace, serif;
+    border: 1px solid black;
+    padding: 5px;
 }
 .mytextarea{
     display: inline-block;
