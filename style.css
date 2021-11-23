@@ -1,10 +1,9 @@
 @charset "UTF-8";
-p{
-    width: 1000px;
-    padding-left:1em;
-    text-indext:-1em;
+.prewrap{
+    white-space: pre;
+    padding-left: 1em;
 }
-.bea{
+.mytextarea{
     display: inline-block;
     width: 100%;
     padding: 10px;

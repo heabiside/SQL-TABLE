@@ -41,7 +41,7 @@
 
     <body>
         <h2><?php echo $name;?></h2>
-        <h2>Powered by MariaDB (compatible with MySQL)</h2>
+        <h2>powered by MariaDB (compatible with MySQL)</h2>
         <?php
 
         $selectQueryCounter=0;
@@ -49,15 +49,13 @@
         // Execute and display each SELECT statement
         for($i=0;$i<count($explodedQueries);$i++){
             $query=preg_replace("/(^(\n|\r| ){0,}|--[^\n]{0,}\n)/","",$explodedQueries[$i]);
-
             
-            
-            // Execute everything but the select statement here.
-            if(strcasecmp(substr($query,0,6),"SELECT")!==0){
-                if(!empty($query)) $db->exec($query);
-                continue;
-            }
             try{
+                // Execute everything but the select statement here.
+                if(strcasecmp(substr($query,0,6),"SELECT")!==0){
+                    if(!empty($query)) $db->exec($query);
+                    continue;
+                }
 
                 $ps=$db->query($query);
                 $selectQueryCounter++;
@@ -65,11 +63,13 @@
             
             <!--Display the executed SQL statement.-->
             <h2><strong>Problem(<?php echo $selectQueryCounter;?>)</strong></h2>
-            <p>SQL statement:<br>
-            <?php echo nl2br(htmlspecialchars($query,ENT_COMPAT,'UTF-8'));?>
+            SQL statement:<br><p class="prewrap">
+            <?php
+                echo $query;//htmlspecialchars($query,ENT_COMPAT,'UTF-8');
+            ?>
             </p>
 
-            <p>Table:<br>
+            Table:<br><p>
             <table border=1>
             
                 <?php
@@ -94,7 +94,7 @@
                     }
                         
                 } catch(PDOException $e){
-                    die("Error");
+                    echo htmlspecialchars($e,ENT_COMPAT,'UTF-8');
                 }
                 ?>
             </table>
