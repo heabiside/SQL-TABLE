@@ -64,11 +64,9 @@
             <!--Display the executed SQL statement.-->
             <h2><strong>Problem(<?php echo $selectQueryCounter;?>)</strong></h2>
             SQL statement:<br>
-            <p class="myp">
             <?php
-                echo $query;
+                echo "<p class='myp'>".htmlspecialchars($query,ENT_COMPAT,'UTF-8')."</p>";
             ?>
-            </p>
 
             Table:<br><p>
             <table border=1>
