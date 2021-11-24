@@ -64,9 +64,11 @@
             <!--Display the executed SQL statement.-->
             <h2><strong>Problem(<?php echo $selectQueryCounter;?>)</strong></h2>
             SQL statement:<br>
+            <p class="myp">
             <?php
-                echo "<p class='prewrap'>".$query."</p>";
+                echo $query;
             ?>
+            </p>
 
             Table:<br><p>
             <table border=1>
