@@ -25,7 +25,7 @@ The result of the SELECT statement will be output in an easy-to-read format as s
 
 
 # Author
-heabi(my twitter account: https://mobile.twitter.com/heabictf)
+heabi
 
 # Other
 If you want to change the look and feel, please tweak the source code yourself. 
